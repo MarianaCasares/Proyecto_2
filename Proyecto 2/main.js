@@ -145,6 +145,52 @@ const createHeader = () => {
   header.appendChild(iconsDiv)
   document.body.prepend(header)
 }
+const showRecommended = () => {
+  const recommendedSection = document.querySelector('#recommended')
+  const recommendedTitle = document.createElement('h2')
+  recommendedTitle.textContent = '🔥 Productos Recomendados 🔥'
+  recommendedTitle.classList.add('recommended-title')
+
+  recommendedSection.appendChild(recommendedTitle)
+
+  const randomArticles = ARTICLES.sort(() => 0.5 - Math.random()).slice(0, 3)
+
+  const wrapper = document.createElement('div')
+  wrapper.classList.add('articles-container')
+
+  randomArticles.forEach((article) => {
+    const divArticle = document.createElement('div')
+    const imgArticle = document.createElement('img')
+    const divInfo = document.createElement('div')
+    const brandInfo = document.createElement('h3')
+    const modelInfo = document.createElement('p')
+    const divPrice = document.createElement('div')
+    const price = document.createElement('p')
+    const buttonPrice = document.createElement('button')
+
+    imgArticle.src = article.image
+    brandInfo.textContent = article.brand
+    modelInfo.textContent = article.model
+    price.textContent = '€' + article.price.toFixed(2)
+    buttonPrice.textContent = 'Comprar'
+
+    divArticle.classList.add('article-card')
+    divInfo.classList.add('article-info', 'flex')
+    divPrice.classList.add('article-price', 'flex')
+    buttonPrice.classList.add('buy-button')
+
+    divArticle.appendChild(imgArticle)
+    divArticle.appendChild(divInfo)
+    divInfo.appendChild(brandInfo)
+    divInfo.appendChild(modelInfo)
+    divInfo.appendChild(price)
+    divPrice.appendChild(buttonPrice)
+    divArticle.appendChild(divPrice)
+    wrapper.appendChild(divArticle)
+  })
+
+  recommendedSection.appendChild(wrapper)
+}
 
 const filter = () => {
   const filtered = ARTICLES.filter(
@@ -153,8 +199,14 @@ const filter = () => {
       article.price >= PRICE_RANGE.min &&
       article.price <= PRICE_RANGE.max
   )
-
   printArticles(filtered)
+
+  const recommendedSection = document.querySelector('#recommended')
+  if (PRICE_RANGE.min > 130) {
+    showRecommended()
+  } else {
+    recommendedSection.innerHTML = ''
+  }
 }
 
 const createSelectBrand = () => {
@@ -216,6 +268,8 @@ const createClearButton = () => {
     document.getElementById('priceFilter').selectedIndex = 0
 
     printArticles(ARTICLES)
+    const recommendedSection = document.querySelector('#recommended')
+    recommendedSection.innerHTML = ''
   })
 
   divFilters.appendChild(clearButton)
