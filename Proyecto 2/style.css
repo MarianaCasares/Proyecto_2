@@ -246,6 +246,9 @@ nav ul li a {
   .logo-container img {
     width: 40px;
   }
+  .recommended-title {
+    font-size: var(--jd-fs-s);
+  }
 }
 
 .icons-container {
@@ -285,3 +288,42 @@ nav ul li a {
   font-size: var(--jd-fs-xs);
   font-family: var(--mb--secondary-font);
 }
+
+.recommended-text {
+  text-align: center;
+  font-family: var(--mb--secondary-font);
+  font-size: var(--jd-fs-m);
+  color: var(--jd-fourth-color);
+  margin-top: var(--jd-margin-s);
+  margin-bottom: var(--jd-margin-s);
+}
+
+#recommended {
+  padding-left: var(--jd-padding-xl);
+  padding-right: var(--jd-padding-xl);
+  margin-top: var(--jd-margin-xl);
+  margin-bottom: var(--jd-margin-xl);
+  background-color: var(--jd-bc-primmary);
+  border-radius: var(--jd-br-select);
+}
+
+#recommended .articles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jd-gap-l);
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--jd-gap-s);
+}
+
+.recommended-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--mb--secondary-font);
+  font-size: var(--jd-fs-m);
+  color: var(--jd-fourth-color);
+  margin-top: var(--jd-margin-s);
+  margin-bottom: var(--jd-margin-s);
+}
+
